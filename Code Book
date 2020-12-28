@@ -1,0 +1,45 @@
+Description of Data.txt according to the guidelines detailed in the task.
+
+Data to variables:
+ft <- features.txt : 561 rows, 2 columns
+The features selected for this database come from the accelerometer and gyroscope 3-axial raw signals tAcc-XYZ and tGyro-XYZ.
+
+act <- activity_labels.txt : 6 rows, 2 columns
+Activities performed when the corresponding measurements were taken and its codes (labels)
+
+subject_test <- test/subject_test.txt : 2947 rows, 1 column
+
+x_test <- test/X_test.txt : 2947 rows, 561 columns
+
+y_test <- test/y_test.txt : 2947 rows, 1 columns
+Test data of activities’code labels
+
+subject_train <- test/subject_train.txt : 7352 rows, 1 column
+
+x_train <- test/X_train.txt : 7352 rows, 561 columns
+
+
+y_train <- test/y_train.txt : 7352 rows, 1 columns
+
+1) Merges the training and the test sets to create df1:
+X (10299 rows, 561 columns): created by merging x_train and x_test using rbind() function
+Y (10299 rows, 1 column): created by merging y_train and y_test using rbind() function
+subject (10299 rows, 1 column): created by merging subject_train and subject_test using rbind() function
+df1 (10299 rows, 563 column): created by merging subject, Y and X using cbind() function
+
+2) Extracts only the measurements on the mean and standard deviation for each measurement
+df2 (10299 rows, 88 columns) is created by subsetting df1 and selecting columns "subject", "code" and the measurements on the mean and SD
+
+3) Uses descriptive activity names to name the activities in the data set
+
+4) Entire numbers in code column of the df2 replaced with corresponding activity taken from second column of the activities variable:
+-All Acc in column’s name replaced by Accelerometer
+-All Gyro in column’s name replaced by Gyroscope
+-All BodyBody in column’s name replaced by Body
+-All Mag in column’s name replaced by Magnitude
+-All start with character f in column’s name replaced by Frequency
+-All start with character t in column’s name replaced by Time
+
+5) Fromdf3 the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject
+data (180 rows, 88 columns) is a sumarize of df2 with the means of each variable for each activity and each subject, group by subject and activity.
+df3 is exported into data.txt file.
